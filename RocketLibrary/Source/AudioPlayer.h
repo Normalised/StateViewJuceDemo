@@ -46,6 +46,7 @@ struct AudioPlayer
     AudioPlayerView view;
 
 private:
+
     rocket::scoped_connection connection;
     std::unique_ptr<juce::FileChooser> fileChooser;
 };

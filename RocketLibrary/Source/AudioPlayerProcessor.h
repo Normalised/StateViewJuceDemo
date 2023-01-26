@@ -13,12 +13,12 @@ public:
     void play();
     void stop();
 
-    rocket::scoped_connection addStateListener(std::function<void(AudioPlayerState)> listener);
-
     void processAudio(const juce::AudioSourceChannelInfo& bufferToFill);
 
+    rocket::scoped_connection addStateListener(std::function<void(AudioPlayerState)> listener);
+
 private:
-    void sendStateChange();
     rocket::thread_safe_signal<void(AudioPlayerState)> signal;
+
     AudioPlayerState state;
 };

@@ -3,15 +3,10 @@
 /**
  * State Handling
  */
-void AudioPlayerProcessor::sendStateChange()
-{
-    signal(state);
-}
-
 rocket::scoped_connection AudioPlayerProcessor::addStateListener(std::function<void(AudioPlayerState)> listener)
 {
     auto connection = signal.connect(listener);
-    sendStateChange();
+    signal(state);
     return connection;
 }
 
@@ -21,19 +16,19 @@ rocket::scoped_connection AudioPlayerProcessor::addStateListener(std::function<v
 void AudioPlayerProcessor::load(juce::File file)
 {
     state.hasLoadedFile = file.existsAsFile();
-    sendStateChange();
+    signal(state);
 }
 
 void AudioPlayerProcessor::play()
 {
     state.isPlaying = true;
-    sendStateChange();
+    signal(state);
 }
 
 void AudioPlayerProcessor::stop()
 {
     state.isPlaying = false;
-    sendStateChange();
+    signal(state);
 }
 
 /**

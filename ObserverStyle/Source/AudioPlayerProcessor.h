@@ -14,16 +14,13 @@ public:
 
     void processAudio(const juce::AudioSourceChannelInfo& bufferToFill);
 
-    /**
-     * State Broadcaster stuff
-     */
     void addStateListener(AudioPlayerState::Listener* listener) override;
     void removeStateListener(AudioPlayerState::Listener* listener) override;
 
-    juce::ListenerList<AudioPlayerState::Listener> listeners;
-
 private:
     void sendStateChange();
+
+    juce::ListenerList<AudioPlayerState::Listener> listeners;
 
     AudioPlayerState state;
 };
