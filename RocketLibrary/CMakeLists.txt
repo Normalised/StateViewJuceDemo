@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.21)
-project(StateViewRocketDemo VERSION 0.0.1)
+project(RocketDemo VERSION 0.0.1)
 
 #including CPM.cmake, a package manager:
 #https://github.com/TheLartians/CPM.cmake
@@ -25,7 +25,7 @@ CPMAddPackage(
 add_library(rocket INTERFACE IMPORTED)
 target_include_directories(rocket INTERFACE ${rocket_SOURCE_DIR})
 
-juce_add_gui_app(StateViewRocketDemo)
+juce_add_gui_app(RocketDemo)
 
 set(SourceFolders
     Source)
@@ -48,15 +48,15 @@ set(JUCE_DEPENDENCIES
         juce::juce_audio_utils
 )
 
-target_compile_features(StateViewRocketDemo PRIVATE cxx_std_17)
+target_compile_features(RocketDemo PRIVATE cxx_std_17)
 
-target_sources(StateViewRocketDemo PRIVATE ${SourceFiles})
+target_sources(RocketDemo PRIVATE ${SourceFiles})
 
-set_target_properties(StateViewRocketDemo PROPERTIES FOLDER "")
+set_target_properties(RocketDemo PROPERTIES FOLDER "")
 
-target_include_directories(StateViewRocketDemo PRIVATE "${SourceFolders}")
+target_include_directories(RocketDemo PRIVATE "${SourceFolders}")
 
-target_link_libraries(StateViewRocketDemo
+target_link_libraries(RocketDemo
     PRIVATE
     ${JUCE_DEPENDENCIES}
         rocket

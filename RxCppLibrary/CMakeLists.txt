@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.21)
-project(StateViewRxCppDemo VERSION 0.0.1)
+project(RxCppDemo VERSION 0.0.1)
 
 #including CPM.cmake, a package manager:
 #https://github.com/TheLartians/CPM.cmake
@@ -53,15 +53,15 @@ set(JUCE_DEPENDENCIES
         juce::juce_audio_utils
         )
 
-target_compile_features(StateViewRxCppDemo PRIVATE cxx_std_17)
+target_compile_features(RxCppDemo PRIVATE cxx_std_17)
 
-target_sources(StateViewRxCppDemo PRIVATE ${SourceFiles})
+target_sources(RxCppDemo PRIVATE ${SourceFiles})
 
-set_target_properties(StateViewRxCppDemo PROPERTIES FOLDER "")
+set_target_properties(RxCppDemo PROPERTIES FOLDER "")
 
-target_include_directories(StateViewRxCppDemo PRIVATE "${SourceFolders}")
+target_include_directories(RxCppDemo PRIVATE "${SourceFolders}")
 
-target_link_libraries(StateViewRxCppDemo
+target_link_libraries(RxCppDemo
         PRIVATE
         ${JUCE_DEPENDENCIES}
         RxCpp

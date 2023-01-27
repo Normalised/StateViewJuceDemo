@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.21)
-project(StateViewJuceDemo VERSION 0.0.1)
+project(JuceListenerListDemo VERSION 0.0.1)
 
 #including CPM.cmake, a package manager:
 #https://github.com/TheLartians/CPM.cmake
@@ -16,7 +16,7 @@ CPMAddPackage(
         GITHUB_REPOSITORY juce-framework/JUCE
         GIT_TAG origin/master)
 
-juce_add_gui_app(StateViewJuceDemo)
+juce_add_gui_app(JuceListenerListDemo)
 
 set(SourceFolders
     Source)
@@ -39,15 +39,15 @@ set(JUCE_DEPENDENCIES
         juce::juce_audio_utils
 )
 
-target_compile_features(StateViewJuceDemo PRIVATE cxx_std_17)
+target_compile_features(JuceListenerListDemo PRIVATE cxx_std_17)
 
-target_sources(StateViewJuceDemo PRIVATE ${SourceFiles})
+target_sources(JuceListenerListDemo PRIVATE ${SourceFiles})
 
-set_target_properties(StateViewJuceDemo PROPERTIES FOLDER "")
+set_target_properties(JuceListenerListDemo PROPERTIES FOLDER "")
 
-target_include_directories(StateViewJuceDemo PRIVATE "${SourceFolders}")
+target_include_directories(JuceListenerListDemo PRIVATE "${SourceFolders}")
 
-target_link_libraries(StateViewJuceDemo
+target_link_libraries(JuceListenerListDemo
     PRIVATE
     ${JUCE_DEPENDENCIES}
     PUBLIC
