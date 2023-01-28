@@ -24,3 +24,28 @@ This uses the [rocket library](https://github.com/tripleslash/rocket) which is a
 5. RxCpp Library
 
 This uses the [rxcpp library](http://reactivex.io/RxCpp/) which is an RX / Reactive Streams implementation.
+
+
+## App Structure
+
+The 4 objects involved are
+
+1. AudioPlayerProcessor
+
+This is where the DSP happens. (There is no actual DSP code, but it would be here if there was)
+
+2. AudioPlayerView
+
+The UI. Contains buttons and labels. Button click actions are used to invoke named lambdas such as *onPlay* which another object can bind to.
+
+3. AudioPlayerState
+
+The state of the Processor but made into its own external state object. Owned by the Processor.
+
+4. AudioPlayer
+
+This owns both the Processor and View and glues them together. View events become actions which act on the processor.
+
+## Notes
+
+The Main.cpp and MainComponent files are just JUCE setup and are identical in every demo app.
