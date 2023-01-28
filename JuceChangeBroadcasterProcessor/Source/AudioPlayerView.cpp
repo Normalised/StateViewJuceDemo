@@ -1,8 +1,7 @@
 
 #include "AudioPlayerView.h"
-#include "AudioPlayerProcessor.h"
 
-AudioPlayerView::AudioPlayerView()
+AudioPlayerView::AudioPlayerView(AudioPlayerProcessor& processorToUse) : processor(processorToUse)
 {
     playButton.onClick = [this]()
     {
@@ -32,16 +31,26 @@ AudioPlayerView::AudioPlayerView()
 
     playingLabel.setBounds(10, 100, 200, 40);
     loadedLabel.setBounds(250, 100, 200, 40);
+
+    processor.addChangeListener(this);
+    update();
+}
+
+AudioPlayerView::~AudioPlayerView()
+{
+    processor.removeChangeListener(this);
 }
 
 void AudioPlayerView::changeListenerCallback(juce::ChangeBroadcaster* source)
 {
-    // If we don't keep the AudioPlayerProcessor as a member, the best we can do
-    // is attempt a dynamic_cast to AudioPlayerProcessor type and then get its new state
-    if (auto processor = dynamic_cast<AudioPlayerProcessor*>(source))
+    if (source == &processor)
     {
-        auto newState = processor->getState();
-        playingLabel.setText(newState.isPlaying ? "Playing" : "Stopped", juce::dontSendNotification);
-        loadedLabel.setText(newState.hasLoadedFile ? "Loaded" : "No file", juce::dontSendNotification);
+        update();
     }
+}
+
+void AudioPlayerView::update() {
+    auto newState = processor.getState();
+    playingLabel.setText(newState.isPlaying ? "Playing" : "Stopped", juce::dontSendNotification);
+    loadedLabel.setText(newState.hasLoadedFile ? "Loaded" : "No file", juce::dontSendNotification);
 }

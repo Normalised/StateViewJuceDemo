@@ -22,13 +22,6 @@ struct AudioPlayer
         {
             chooseFile();
         };
-
-        processor.addChangeListener(&view);
-        /**
-         * Processor doesn't know when a listener is connected so can't
-         * send the initial state update
-         */
-        processor.sendChangeMessage();
     }
 
     void chooseFile()
@@ -43,13 +36,8 @@ struct AudioPlayer
         });
     }
 
-    ~AudioPlayer()
-    {
-        processor.removeChangeListener(&view);
-    }
-
     AudioPlayerProcessor processor;
-    AudioPlayerView view;
+    AudioPlayerView view { processor };
 
 private:
     std::unique_ptr<juce::FileChooser> fileChooser;

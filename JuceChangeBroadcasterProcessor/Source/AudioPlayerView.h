@@ -1,14 +1,15 @@
 #pragma once
 
-#include "AudioPlayerState.h"
 #include <juce_gui_basics/juce_gui_basics.h>
+#include "AudioPlayerProcessor.h"
 
 class AudioPlayerView
     : public juce::Component
     , public juce::ChangeListener
 {
 public:
-    AudioPlayerView();
+    AudioPlayerView(AudioPlayerProcessor& processorToUse);
+    ~AudioPlayerView() override;
 
     void changeListenerCallback(juce::ChangeBroadcaster* source) override;
 
@@ -23,6 +24,10 @@ public:
     };
 
 private:
+    void update();
+
+    AudioPlayerProcessor& processor;
+
     juce::TextButton playButton{"Play"};
     juce::TextButton stopButton{"Stop"};
     juce::TextButton loadButton{"Load"};
