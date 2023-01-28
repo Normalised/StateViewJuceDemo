@@ -25,6 +25,9 @@ This uses the [rocket library](https://github.com/tripleslash/rocket) which is a
 
 This uses the [rxcpp library](http://reactivex.io/RxCpp/) which is an RX / Reactive Streams implementation.
 
+6. TypePipe Library
+
+This uses the [TypePipe library](https://github.com/Normalised/TypePipe) which is my own simple library similar to signals / slots and based around value type based event channels.
 
 ## App Structure
 
