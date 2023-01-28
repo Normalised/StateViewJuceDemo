@@ -5,6 +5,10 @@ and how to decouple the UI from the other parts of the application.
 
 Each app is based around a single technique or library and is buildable via CMake on its own.
 
+0. Juce Starting Point
+
+Level Zero. You have a view, you have a processor, wire them together directly. The structure of this is different to all the other later demos because it has no intermediate AudioPlayer object.
+
 1. Juce Change Broadcaster - Processor
 
 This uses the JUCE Change Broadcaster class and makes the Processor the broadcaster.
