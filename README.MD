@@ -5,14 +5,22 @@ and how to decouple the UI from the other parts of the application.
 
 Each app is based around a single technique or library and is buildable via CMake on its own.
 
-1. Juce Listener List
+1. Juce Change Broadcaster - Processor
 
-This uses plain JUCE only and demonstrates a simple implementation of the Observer pattern using a Listener / Broadcaster pair of interfaces along with the JUCE ListenerList class.
+This uses the JUCE Change Broadcaster class and makes the Processor the broadcaster.
 
-2. Rocket Library
+2. Juce Change Broadcaster - State
+
+This uses the JUCE Change Broadcaster class and makes the State broadcast changes.
+
+3. Juce Listener List
+
+This uses a JUCE Listener List and a Listener / Broadcaster pair of interfaces.
+
+4. Rocket Library
 
 This uses the [rocket library](https://github.com/tripleslash/rocket) which is a signals / slots implementation.
 
-3. RxCpp Library
+5. RxCpp Library
 
 This uses the [rxcpp library](http://reactivex.io/RxCpp/) which is an RX / Reactive Streams implementation.
