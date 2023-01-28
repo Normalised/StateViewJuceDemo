@@ -2,7 +2,8 @@
 #include "AudioPlayerView.h"
 #include "AudioPlayerState.h"
 
-AudioPlayerView::AudioPlayerView()
+AudioPlayerView::AudioPlayerView(AudioPlayerState& stateToUse)
+    : state(stateToUse)
 {
     playButton.onClick = [this]()
     {
@@ -32,15 +33,26 @@ AudioPlayerView::AudioPlayerView()
 
     playingLabel.setBounds(10, 100, 200, 40);
     loadedLabel.setBounds(250, 100, 200, 40);
+
+    state.addChangeListener(this);
+    update();
+}
+
+AudioPlayerView::~AudioPlayerView()
+{
+    state.removeChangeListener(this);
 }
 
 void AudioPlayerView::changeListenerCallback(juce::ChangeBroadcaster* source)
 {
-    // Now the change broadcaster is the state, again if we don't have a pointer
-    // to it, we have to dynamic cast to check the type.
-    if (auto newState = dynamic_cast<AudioPlayerState*>(source))
+    if (source == &state)
     {
-        playingLabel.setText(newState->isPlaying ? "Playing" : "Stopped", juce::dontSendNotification);
-        loadedLabel.setText(newState->hasLoadedFile ? "Loaded" : "No file", juce::dontSendNotification);
+        update();
     }
+}
+
+void AudioPlayerView::update()
+{
+    playingLabel.setText(state.isPlaying ? "Playing" : "Stopped", juce::dontSendNotification);
+    loadedLabel.setText(state.hasLoadedFile ? "Loaded" : "No file", juce::dontSendNotification);
 }

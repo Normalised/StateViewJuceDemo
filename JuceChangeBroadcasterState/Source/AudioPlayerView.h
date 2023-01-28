@@ -8,7 +8,9 @@ class AudioPlayerView
     , public juce::ChangeListener
 {
 public:
-    AudioPlayerView();
+    AudioPlayerView(AudioPlayerState& stateToUse);
+
+    ~AudioPlayerView() override;
 
     void changeListenerCallback(juce::ChangeBroadcaster* source) override;
 
@@ -23,6 +25,10 @@ public:
     };
 
 private:
+    void update();
+
+    AudioPlayerState& state;
+
     juce::TextButton playButton{"Play"};
     juce::TextButton stopButton{"Stop"};
     juce::TextButton loadButton{"Load"};

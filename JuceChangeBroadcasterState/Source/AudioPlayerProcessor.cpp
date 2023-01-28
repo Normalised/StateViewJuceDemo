@@ -13,20 +13,17 @@ AudioPlayerState& AudioPlayerProcessor::getState()
  */
 void AudioPlayerProcessor::load(juce::File file)
 {
-    state.hasLoadedFile = file.existsAsFile();
-    state.sendChangeMessage();
+    state.setLoaded(file.existsAsFile());
 }
 
 void AudioPlayerProcessor::play()
 {
-    state.isPlaying = true;
-    state.sendChangeMessage();
+    state.setPlaying(true);
 }
 
 void AudioPlayerProcessor::stop()
 {
-    state.isPlaying = false;
-    state.sendChangeMessage();
+    state.setPlaying(false);
 }
 
 /**

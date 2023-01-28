@@ -23,8 +23,6 @@ struct AudioPlayer
             chooseFile();
         };
 
-        processor.getState().addChangeListener(&view);
-        processor.getState().sendChangeMessage();
     }
 
     void chooseFile()
@@ -39,13 +37,8 @@ struct AudioPlayer
         });
     }
 
-    ~AudioPlayer()
-    {
-        processor.getState().removeChangeListener(&view);
-    }
-
     AudioPlayerProcessor processor;
-    AudioPlayerView view;
+    AudioPlayerView view { processor.getState() };
 
 private:
     std::unique_ptr<juce::FileChooser> fileChooser;
