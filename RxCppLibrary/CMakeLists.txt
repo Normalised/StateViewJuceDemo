@@ -30,7 +30,7 @@ if (RxCpp_ADDED)
     target_include_directories(RxCpp INTERFACE ${RxSourceDir})
 endif ()
 
-juce_add_gui_app(StateViewRxCppDemo)
+juce_add_gui_app(RxCppDemo)
 
 set(SourceFolders
         Source)
