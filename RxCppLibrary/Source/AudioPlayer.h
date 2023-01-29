@@ -27,7 +27,11 @@ struct AudioPlayer
         {
             view.onStateChange(state);
         });
+    }
 
+    ~AudioPlayer()
+    {
+        stateSubscription.unsubscribe();
     }
 
     void chooseFile()
@@ -35,9 +39,8 @@ struct AudioPlayer
         fileChooser = std::make_unique<juce::FileChooser>("Choose an audio file");
         auto flags = juce::FileBrowserComponent::canSelectFiles | juce::FileBrowserComponent::openMode;
 
-        fileChooser->launchAsync(flags,
-                                 [this](const juce::FileChooser& chooser)
-                                 {
+        fileChooser->launchAsync(flags, [this](const juce::FileChooser& chooser)
+        {
             processor.load(chooser.getResult());
         });
     }
@@ -46,7 +49,6 @@ struct AudioPlayer
     AudioPlayerView view;
 
 private:
-
     rxcpp::composite_subscription stateSubscription;
     std::unique_ptr<juce::FileChooser> fileChooser;
 };
