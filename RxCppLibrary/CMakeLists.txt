@@ -18,7 +18,7 @@ CPMAddPackage(
 
 CPMAddPackage(
         NAME RxCpp
-        VERSION 4.1.0
+        VERSION 4.1.1
         GITHUB_REPOSITORY ReactiveX/RxCpp
         DOWNLOAD_ONLY YES
 )

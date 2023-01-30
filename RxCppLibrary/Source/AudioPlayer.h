@@ -27,6 +27,7 @@ struct AudioPlayer
         {
             view.onStateChange(state);
         });
+
     }
 
     ~AudioPlayer()
@@ -50,5 +51,6 @@ struct AudioPlayer
 
 private:
     rxcpp::composite_subscription stateSubscription;
+
     std::unique_ptr<juce::FileChooser> fileChooser;
 };
