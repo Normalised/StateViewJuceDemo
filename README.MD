@@ -5,6 +5,8 @@ and how to decouple the UI from the other parts of the application.
 
 Each app is based around a single technique or library and is buildable via CMake on its own.
 
+There is a [youtube video recorded with The Audio Programmer](https://www.youtube.com/watch?v=Ngvi4hMM6Mo&t=3941s&ab_channel=TheAudioProgrammer) which goes through most of the examples in detail.
+
 0. Juce Starting Point
 
 Level Zero. You have a view, you have a processor, wire them together directly. The structure of this is different to all the other later demos because it has no intermediate AudioPlayer object.
